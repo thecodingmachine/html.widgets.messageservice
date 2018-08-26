@@ -3,6 +3,7 @@ namespace Mouf\Html\Widgets\MessageService\Widget;
 use Mouf\Html\Widgets\MessageService\Service\UserMessage;
 use Mouf\Html\HtmlElement\HtmlElementInterface;
 use Mouf\Html\Renderer\Renderable;
+use Mouf\Html\Widgets\MessageService\Service\UserMessageInterface;
 
 /**
  * This class represents a message displayed.
@@ -16,22 +17,22 @@ class RenderedMessage implements HtmlElementInterface {
 	private $userMessage;
 	private $nbMessages;
 
-	public function __construct(UserMessage $userMessage, $nbMessages) {
+	public function __construct(UserMessageInterface $userMessage, int $nbMessages) {
 		$this->userMessage = $userMessage;
 		$this->nbMessages = $nbMessages;
 	}
 	
 	/**
-	 * @return UserMessage
+	 * @return UserMessageInterface
 	 */
-	public function getUserMessage() {
+	public function getUserMessage(): UserMessageInterface {
 		return $this->userMessage;
 	}
 	
 	/**
 	 * @return int
 	 */
-	public function getNbMessages() {
+	public function getNbMessages(): int {
 		return $this->nbMessages;
 	}
 }

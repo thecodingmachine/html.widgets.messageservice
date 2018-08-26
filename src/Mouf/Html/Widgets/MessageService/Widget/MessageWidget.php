@@ -3,7 +3,7 @@ namespace Mouf\Html\Widgets\MessageService\Widget;
 
 use Mouf\Html\Widgets\MessageService\Service\MessageProviderInterface;
 use Mouf\Html\HtmlElement\HtmlElementInterface;
-use Mouf\Html\Widgets\MessageService\Service;
+use Mouf\Html\Widgets\MessageService\Service\UserMessageInterface;
 
 /**
  * The MessageWidget is in charge of displaying HTML messages.
@@ -20,7 +20,14 @@ class MessageWidget implements HtmlElementInterface {
 	 * 
 	 * @var MessageProviderInterface
 	 */
-	public $messageProvider;
+	private $messageProvider;
+
+
+    public function __construct(MessageProviderInterface $messageProvider)
+    {
+        $this->messageProvider = $messageProvider;
+	}
+
 
 	/**
 	 * Renders the messages in HTML.
@@ -49,7 +56,7 @@ class MessageWidget implements HtmlElementInterface {
  
 		foreach ($toDisplayMessages as $message) {
 			/* @var $message UserMessageInterface */
-			$renderedMessage = new RenderedMessage($message, $invertedMessages[$html]['nbOccurences']);
+			$renderedMessage = new RenderedMessage($message, $invertedMessages[$message->getMessage()]['nbOccurences']);
 			$renderedMessage->toHtml();
 		}
 	}

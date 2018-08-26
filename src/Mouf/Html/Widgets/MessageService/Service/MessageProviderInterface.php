@@ -24,7 +24,5 @@ interface MessageProviderInterface {
 	 * @param string $category The category of the messages to retrieve, or null for the global category.
 	 * @return array<UserMessageInterface>
 	 */
-	function getMessages($category = NULL);
+	public function getMessages(string $category = NULL): array;
 }
-
-?>

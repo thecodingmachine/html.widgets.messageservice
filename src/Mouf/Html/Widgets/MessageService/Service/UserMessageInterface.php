@@ -28,7 +28,7 @@ interface UserMessageInterface {
 	 * 
 	 * @return string
 	 */
-	function getMessage();
+	function getMessage(): string;
 	
 	/**
 	 * Returns the type of the message.
@@ -36,12 +36,12 @@ interface UserMessageInterface {
 	 *
 	 * @return string
 	 */
-	function getType();
+	function getType(): string;
 	
 	/**
 	 * Returns the category for this message (or null if this is a global message).
 	 * 
 	 * @return string
 	 */
-	function getCategory();
+	function getCategory(): string;
 }

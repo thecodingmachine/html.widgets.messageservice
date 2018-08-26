@@ -20,29 +20,33 @@ class SessionMessageService implements MessageProviderInterface {
 	/**
 	 * The SESSION key used to store messages.
 	 * 
-	 * @Property
-	 * @Compulsory
 	 * @var string
 	 */
-	public $sessionKey = "MOUF_USER_MESSAGES";
+	private $sessionKey = "MOUF_USER_MESSAGES";
 	
 	/**
 	 * The session manager used to access the session.
 	 * If no session manager is set, the developer will have to ensure itself that the session
 	 * is started before calling the session message service.
 	 * 
-	 * @var SessionManagerInterface
+	 * @var SessionManagerInterface|null
 	 */
-	public $sessionManager;
-	
+    private $sessionManager;
+
+    public function __construct(SessionManagerInterface $sessionManager = null, string $sessionKey = 'MOUF_USER_MESSAGES')
+    {
+        $this->sessionManager = $sessionManager;
+        $sessionKey = $this->sessionKey;
+	}
+
 	/**
 	 * Sets a message to be displayed to a user.
 	 *
 	 * @param string $html The message to be displayed, as a HTML string.
 	 * @param string $type The type of the message. Can be one of UserMessageInterface::SUCCESS, UserMessageInterface::INFO, UserMessageInterface::WARNING, UserMessageInterface::ERROR.
-	 * @param string $category The category of the message to set. A category is a string. If "null", the global category is used.
+	 * @param string|null $category The category of the message to set. A category is a string. If "null", the global category is used.
 	 */
-	function setMessage($html, $type, $category = null) {
+	function setMessage(string $html, string $type, ?string $category = null): void {
 		if ($category == null) {
 			$category = "mouf_usermessageservice_global";
 		}
@@ -62,7 +66,7 @@ class SessionMessageService implements MessageProviderInterface {
 	 * 
 	 * @param string $category
 	 */
-	function purgeMessages($category = NULL) {
+	function purgeMessages(string $category = NULL): void {
 		if ($category == null) {
 			$category = "mouf_usermessageservice_global";
 		}
@@ -80,7 +84,7 @@ class SessionMessageService implements MessageProviderInterface {
 	 * @param string $category The category of the messages to retrieve, or null for the global category.
 	 * @return array<UserMessageInterface>
 	 */
-	function getMessages($category = NULL) {
+	function getMessages(string $category = NULL): array {
 		if ($category == null) {
 			$category = "mouf_usermessageservice_global";
 		}

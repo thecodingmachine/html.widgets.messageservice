@@ -1,0 +1,5 @@
+parameters:
+    ignoreErrors:
+     - "#you should not use the \\$_SESSION superglobal#"
+includes:
+    - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon

@@ -44,7 +44,7 @@ class UserMessage implements UserMessageInterface {
 	 *
 	 * @param string|ValueInterface $message
 	 */
-	function setMessage($message) {
+    public function setMessage($message): void {
 		$this->message = $message;
 	}
 	
@@ -53,7 +53,7 @@ class UserMessage implements UserMessageInterface {
 	 * 
 	 * @return string
 	 */
-	function getMessage() {
+    public function getMessage(): string {
 		return ValueUtils::val($this->message);
 	}
 	
@@ -63,10 +63,10 @@ class UserMessage implements UserMessageInterface {
 	 *
 	 * @param string|ValueInterface $type
 	 */
-	function setType($type) {
+    public function setType($type): void {
 		$type = ValueUtils::val($type);
 		if (!in_array($type, array(UserMessageInterface::SUCCESS, UserMessageInterface::INFO, UserMessageInterface::WARNING, UserMessageInterface::ERROR))) {
-			throw new \Exception("The type of a message must be one of UserMessageInterface::SUCCESS, UserMessageInterface::INFO, UserMessageInterface::WARNING, UserMessageInterface::ERROR");
+			throw new \InvalidArgumentException('The type of a message must be one of UserMessageInterface::SUCCESS, UserMessageInterface::INFO, UserMessageInterface::WARNING, UserMessageInterface::ERROR');
 		}
 		
 		$this->type = $type;
@@ -78,7 +78,7 @@ class UserMessage implements UserMessageInterface {
 	 *
 	 * @return string
 	 */
-	function getType() {
+    public function getType(): string {
 		return $this->type;
 	}
 	
@@ -87,7 +87,7 @@ class UserMessage implements UserMessageInterface {
 	 *
 	 * @param string|ValueInterface $category
 	 */
-	function setCategory($category) {
+    public function setCategory($category): void {
 		$this->category = $category;
 	}
 	
@@ -96,7 +96,7 @@ class UserMessage implements UserMessageInterface {
 	 * 
 	 * @return string
 	 */
-	function getCategory() {
+	public function getCategory(): string {
 		return ValueUtils::val($this->category);
 	}
 }
