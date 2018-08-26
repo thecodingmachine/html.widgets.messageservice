@@ -1,3 +1,6 @@
 {
-  "Interop\\Container\\ServiceProviderInterface": "Mouf\\Utils\\Session\\SessionManager\\SessionManagerServiceProvider"
+  "Interop\\Container\\ServiceProviderInterface": [
+    "Mouf\\Html\\Widgets\\MessageService\\DI\\MessageServiceServiceProvider",
+    "Mouf\\Html\\Widgets\\MessageService\\DI\\MessageServiceTemplateServiceProvider"
+  ]
 }
