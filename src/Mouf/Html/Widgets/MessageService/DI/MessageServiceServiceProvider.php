@@ -3,7 +3,6 @@
 
 namespace Mouf\Html\Widgets\MessageService\DI;
 
-
 use Mouf\Html\HtmlElement\HtmlBlock;
 use Mouf\Html\Utils\WebLibraryManager\WebLibrary;
 use Mouf\Html\Widgets\MessageService\Service\SessionMessageService;
@@ -50,7 +49,10 @@ class MessageServiceServiceProvider extends ServiceProvider
      */
     public static function createWebLibrary(ContainerInterface $container): WebLibrary
     {
-        return new WebLibrary([],
-            ['vendor/mouf/html.widgets.messageservice/messages.css'], $container->get('root_url'));
+        return new WebLibrary(
+            [],
+            ['vendor/mouf/html.widgets.messageservice/messages.css'],
+            $container->get('root_url')
+        );
     }
 }
