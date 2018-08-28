@@ -20,7 +20,7 @@ class MessageServiceServiceProvider extends ServiceProvider
     /**
      * @Factory(aliases={MessageServiceInterface::class})
      */
-    public function createSessionMessageService(?SessionManagerInterface $sessionManager): MessageProviderInterface
+    public static function createSessionMessageService(?SessionManagerInterface $sessionManager): MessageProviderInterface
     {
         return new SessionMessageService($sessionManager);
     }
